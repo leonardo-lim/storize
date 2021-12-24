@@ -1,5 +1,9 @@
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
+const { Client } = require('pg');
+
+require('dotenv/config');
+
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -31,6 +35,17 @@ app.use('/', (req, res) => {
     title: 'Page Not Found'
   });
 });
+
+// Database
+const client = new Client({
+  host: process.env.DB_HOST,
+  port: parseInt(process.env.DB_PORT),
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE
+});
+
+client.connect();
 
 // Server
 app.listen(port, () => {
