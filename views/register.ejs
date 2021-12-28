@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row min-vh-100 d-flex align-items-center text-black">
+    <div class="col-lg-6 col-12">
+      <img src="/img/rocket.png" class="d-block ms-lg-auto m-auto" alt="Rocket">
+    </div>
+    <div class="col-lg-6 col-12 my-5">
+      <h1 class="mb-3 text-lg-start text-center">Register</h1>
+
+      <% if (typeof(errors) !== 'undefined') { %>
+        <div class="mb-3">
+          <% errors.forEach(error => { %>
+            <div class="alert alert-warning w-75 py-2 mb-2 m-auto float-lg-start" role="alert"><%= error.msg %></div>
+          <% }); %>
+        </div>
+      <% } %>
+
+      <form action="/register" method="POST" class="text-lg-start text-center">
+        <div class="form-group mb-3">
+          <span class="me-2 mt-1 position-absolute"><i class="fa fa-tag text-gold"></i></span>
+          <input type="text" class="form-control bg-transparent w-75 ps-4 border-0 border-bottom rounded-0 d-inline" id="name" name="name" placeholder="Enter your name" value="<%= data.name %>">
+        </div>
+        <div class="form-group mb-3">
+          <span class="me-2 mt-1 position-absolute"><i class="fa fa-phone-alt text-gold"></i></span>
+          <input type="text" class="form-control bg-transparent w-75 ps-4 border-0 border-bottom rounded-0 d-inline" id="phone" name="phone" placeholder="Enter your phone" value="<%= data.phone %>">
+        </div>
+        <div class="form-group mb-3">
+          <span class="me-2 mt-1 position-absolute"><i class="fa fa-envelope text-gold"></i></span>
+          <input type="text" class="form-control bg-transparent w-75 ps-4 border-0 border-bottom rounded-0 d-inline" id="email" name="email" placeholder="Enter your email" value="<%= data.email %>">
+        </div>
+        <div class="form-group mb-3">
+          <span class="me-2 mt-1 position-absolute"><i class="fa fa-user text-gold"></i></span>
+          <input type="text" class="form-control bg-transparent w-75 ps-4 border-0 border-bottom rounded-0 d-inline" id="username" name="username" placeholder="Enter your username" value="<%= data.username %>">
+        </div>
+        <div class="form-group mb-3">
+          <span class="me-2 mt-1 position-absolute"><i class="fa fa-lock-alt text-gold"></i></span>
+          <input type="password" class="form-control bg-transparent w-75 ps-4 border-0 border-bottom rounded-0 d-inline" id="password" name="password" placeholder="Enter your password" value="<%= data.password %>">
+        </div>
+        <div class="form-group mb-3">
+          <span class="me-2 mt-1 position-absolute"><i class="fa fa-lock text-gold"></i></span>
+          <input type="password" class="form-control bg-transparent w-75 ps-4 border-0 border-bottom rounded-0 d-inline" id="confirm-password" name="confirmPassword" placeholder="Confirm your password" value="<%= data.confirmPassword %>">
+        </div>
+        <button type="submit" class="btn btn-gold w-75 mb-2"><i class="fa fa-user-plus"></i> Register</button>
+        <a href="/login" class="btn btn-beige w-75"><i class="fa fa-arrow-left"></i> Back</a>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,7 @@
 const express = require('express');
+const { pool } = require('../db-config');
+const { check, validationResult } = require('express-validator');
+const bcrypt = require('bcrypt');
 const router = express.Router();
 
 router.get('/', (req, res) => {
@@ -6,6 +9,83 @@ router.get('/', (req, res) => {
     layout: 'layouts/main',
     title: 'Home'
   });
+});
+
+router.get('/login', (req, res) => {
+  res.render('login', {
+    layout: 'layouts/main',
+    title: 'Login',
+    message: req.flash('message')
+  });
+});
+
+router.get('/register', (req, res) => {
+  res.render('register', {
+    layout: 'layouts/main',
+    title: 'Register',
+    data: {
+      name: '',
+      phone: '',
+      email: '',
+      username: '',
+      password: '',
+      confirmPassword: ''
+    }
+  });
+});
+
+router.post('/register', [
+  check('name', 'Name field is required.').notEmpty(),
+  check('name', 'Name field should not contain more than 50 characters.').isLength({ max: 50 }),
+  check('phone', 'Invalid phone format.').isMobilePhone(),
+  check('email', 'Invalid email format.').isEmail(),
+  check('email', 'Email field should not contain more than 50 characters.').isLength({ max: 50 }),
+  check('username', 'Username field is required.').notEmpty(),
+  check('username', 'Username field should not contain more than 50 characters.').isLength({ max: 50 }),
+  check('password', 'Password should contain between 8 - 50 characters.').isLength({ min: 8, max: 50 }),
+], async (req, res) => {
+  const errors = validationResult(req);
+  const { name, phone, email, username, password, confirmPassword } = req.body;
+
+  if (password !== confirmPassword) {
+    errors.errors.push({ msg: 'Password does not match' });
+  }
+
+  if (!errors.isEmpty()) {
+    res.render('register', {
+      layout: 'layouts/main',
+      title: 'Register',
+      errors: errors.array(),
+      data: req.body
+    });
+  } else {
+    pool.query('SELECT email, username FROM users WHERE email = $1 OR username = $2;',
+    [email, username],
+    async (err, result) => {
+      if (err) throw err;
+
+      if (result.rows.length) {
+        errors.errors.push({ msg: 'Email or username already registered' });
+
+        res.render('register', {
+          layout: 'layouts/main',
+          title: 'Register',
+          errors: errors.array(),
+          data: req.body
+        });
+      } else {
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        pool.query('INSERT INTO users (username, email, password, name, phone) VALUES ($1, $2, $3, $4, $5)',
+        [username, email, hashedPassword, name, phone],
+        (err, result) => {
+          if (err) throw err;
+          req.flash('message', 'Registration successful. You can login now.');
+          res.redirect('/login');
+        });
+      }
+    });
+  }
 });
 
 module.exports = router;
