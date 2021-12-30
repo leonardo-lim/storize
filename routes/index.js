@@ -1,7 +1,9 @@
 const express = require('express');
-const { pool } = require('../db-config');
+const { pool } = require('../config/database');
 const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
+const passport = require('passport');
+const { checkAuthenticated, checkNotAuthenticated } = require('../utils/auth');
 const router = express.Router();
 
 router.get('/', (req, res) => {
@@ -11,15 +13,28 @@ router.get('/', (req, res) => {
   });
 });
 
-router.get('/login', (req, res) => {
+router.get('/login', checkAuthenticated, (req, res) => {
   res.render('login', {
     layout: 'layouts/main',
     title: 'Login',
-    message: req.flash('message')
+    message: req.flash('message'),
+    error: req.flash('error')
   });
 });
 
-router.get('/register', (req, res) => {
+router.post('/login', passport.authenticate('local', {
+  successRedirect: '/products',
+  failureRedirect: '/login',
+  failureFlash: true
+}));
+
+router.get('/logout', checkNotAuthenticated, (req, res) => {
+  req.logOut();
+  req.flash('message', 'You have been logged out.');
+  res.redirect('/login');
+});
+
+router.get('/register', checkAuthenticated, (req, res) => {
   res.render('register', {
     layout: 'layouts/main',
     title: 'Register',

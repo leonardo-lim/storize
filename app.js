@@ -2,11 +2,14 @@ const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const session = require('express-session');
 const flash = require('connect-flash');
+const passport = require('passport');
+const initializePassport = require('./config/passport');
 
 require('dotenv/config');
 
 const app = express();
 const port = process.env.PORT || 3000;
+initializePassport(passport);
 
 // EJS
 app.set('view engine', 'ejs');
@@ -24,7 +27,15 @@ app.use(session({
   saveUninitialized: true
 }));
 
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(flash());
+
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.isAuthenticated();
+  res.locals.name = req.session.name;
+  next();
+});
 
 // Routes
 const indexRoute = require('./routes/index');

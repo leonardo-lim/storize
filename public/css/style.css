@@ -72,6 +72,18 @@ html {
   box-shadow: none !important;
 }
 
+.dropdown .dropdown-menu {
+  background-color: #bfbe58;
+}
+
+.dropdown .dropdown-menu a {
+  color: #fff;
+}
+
+.dropdown .dropdown-menu a:hover {
+  background-color: #dad992;
+}
+
 /* Background */
 .background .lemons {
   width: 100%;
