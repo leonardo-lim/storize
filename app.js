@@ -33,6 +33,7 @@ app.use(flash());
 
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.isAuthenticated();
+  res.locals.username = req.session.username;
   res.locals.name = req.session.name;
   next();
 });

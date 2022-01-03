@@ -4,6 +4,8 @@ const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
 const { checkAuthenticated, checkNotAuthenticated } = require('../utils/auth');
+const isUsername = require('../utils/validator');
+const moment = require('moment');
 const router = express.Router();
 
 router.get('/', (req, res) => {
@@ -55,15 +57,19 @@ router.post('/register', [
   check('phone', 'Invalid phone format.').isMobilePhone(),
   check('email', 'Invalid email format.').isEmail(),
   check('email', 'Email field should not contain more than 50 characters.').isLength({ max: 50 }),
+  check('username').custom(value => {
+    if (!isUsername(value)) throw new Error('Invalid username format.');
+    return true;
+  }),
   check('username', 'Username field is required.').notEmpty(),
   check('username', 'Username field should not contain more than 50 characters.').isLength({ max: 50 }),
-  check('password', 'Password should contain between 8 - 50 characters.').isLength({ min: 8, max: 50 }),
+  check('password', 'Password should contain between 8 - 50 characters.').isLength({ min: 8, max: 50 })
 ], async (req, res) => {
   const errors = validationResult(req);
   const { name, phone, email, username, password, confirmPassword } = req.body;
 
   if (password !== confirmPassword) {
-    errors.errors.push({ msg: 'Password does not match' });
+    errors.errors.push({ msg: 'Password does not match.' });
   }
 
   if (!errors.isEmpty()) {
@@ -80,7 +86,7 @@ router.post('/register', [
       if (err) throw err;
 
       if (result.rows.length) {
-        errors.errors.push({ msg: 'Email or username already registered' });
+        errors.errors.push({ msg: 'Email or username already registered.' });
 
         res.render('register', {
           layout: 'layouts/main',
@@ -90,9 +96,10 @@ router.post('/register', [
         });
       } else {
         const hashedPassword = await bcrypt.hash(password, 10);
+        const joinDate = moment(Date.now()).format('YYYY-MM-DD HH:mm:s');
 
-        pool.query('INSERT INTO users (username, email, password, name, phone) VALUES ($1, $2, $3, $4, $5)',
-        [username, email, hashedPassword, name, phone],
+        pool.query('INSERT INTO users (username, email, password, name, phone, joinDate) VALUES ($1, $2, $3, $4, $5, $6)',
+        [username, email, hashedPassword, name, phone, joinDate],
         (err, result) => {
           if (err) throw err;
           req.flash('message', 'Registration successful. You can login now.');

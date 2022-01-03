@@ -1,0 +1,118 @@
+<div class="container">
+  <div class="row min-vh-100 pt-5 d-flex align-items-center text-black">
+    <% if (isMyUser) { %>
+      <div class="col-lg-4 col-12">
+        <img src="/img/scrolling.png" class="d-block w-100 h-100 ms-lg-auto m-auto" alt="Scrolling">
+      </div>
+      <div class="col-lg-8 col-12">
+        <div class="card bg-transparent w-100 border-0 m-auto float-lg-start">
+          <div class="card-body text-lg-start text-center">
+            <div class="row">
+              <div class="col">
+                <h1 class="mb-3">My Profile</h1>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6 col-12">
+                <div>
+                  <h6 class="mb-1 text-gold"><i class="fa fa-tag"></i> Name</h6>
+                  <h6 class="card-title"><%= user.name %></h6>
+                </div>
+                <hr>
+                <div>
+                  <h6 class="mb-1 text-gold"><i class="fa fa-user"></i> Username</h6>
+                  <h6 class="card-title"><%= user.username %></h6>
+                </div>
+                <hr>
+                <div>
+                  <h6 class="mb-1 text-gold"><i class="fa fa-envelope"></i> Email</h6>
+                  <h6 class="card-title"><%= user.email %></h6>
+                </div>
+                <hr>
+                <div>
+                  <h6 class="mb-1 text-gold"><i class="fa fa-phone-alt"></i> Phone</h6>
+                  <h6 class="card-title"><%= user.phone %></h6>
+                </div>
+                <hr>
+                <div>
+                  <h6 class="mb-1 text-gold"><i class="fa fa-clock"></i> Joined From</h6>
+                  <h6 class="card-title"><%= joinedFrom %> ago</h6>
+                </div>
+                <hr>
+              </div>
+              <div class="col-lg-6 col-12">
+                <div>
+                  <h6 class="mb-1 text-gold"><i class="fa fa-map-marker-alt"></i> Address</h6>
+                  <h6 class="card-title>"><%= !user.address && '-' %></h6>
+                </div>
+                <hr>
+                <div>
+                  <h6 class="mb-1 text-gold"><i class="fa fa-city"></i> City</h6>
+                  <h6 class="card-title>"><%= !user.city && '-' %></h6>
+                </div>
+                <hr>
+                <div>
+                  <h6 class="mb-1 text-gold"><i class="fa fa-globe"></i> Country</h6>
+                  <h6 class="card-title>"><%= !user.country && '-' %></h6>
+                </div>
+                <hr>
+                <div>
+                  <h6 class="mb-1 text-gold"><i class="fa fa-mailbox"></i> Zip Code</h6>
+                  <h6 class="card-title>"><%= !user.zipcode && '-' %></h6>
+                </div>
+                <hr>
+                <% if (isMyUser) { %>
+                  <a href="/users/edit/<%= user.username %>" class="btn btn-gold w-100 mt-2"><i class="fa fa-pencil"></i> Edit</a>
+                <% } %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% } else { %>
+      <div class="col-lg-6 col-12">
+        <img src="/img/scrolling.png" class="d-block ms-lg-auto m-auto" alt="Scrolling">
+      </div>
+      <div class="col-lg-6 col-12">
+        <div class="card bg-transparent w-100 border-0 m-auto float-lg-start">
+          <div class="card-body text-lg-start text-center">
+            <div class="row">
+              <div class="col">
+                <h1 class="mb-3"><%= user.name %>'s Profile</h1>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div>
+                  <h6 class="mb-1 text-gold"><i class="fa fa-tag"></i> Name</h6>
+                  <h6 class="card-title"><%= user.name %></h6>
+                </div>
+                <hr>
+                <div>
+                  <h6 class="mb-1 text-gold"><i class="fa fa-user"></i> Username</h6>
+                  <h6 class="card-title"><%= user.username %></h6>
+                </div>
+                <hr>
+                <div>
+                  <h6 class="mb-1 text-gold"><i class="fa fa-envelope"></i> Email</h6>
+                  <h6 class="card-title"><%= user.email %></h6>
+                </div>
+                <hr>
+                <div>
+                  <h6 class="mb-1 text-gold"><i class="fa fa-phone-alt"></i> Phone</h6>
+                  <h6 class="card-title"><%= user.phone %></h6>
+                </div>
+                <hr>
+                <div>
+                  <h6 class="mb-1 text-gold"><i class="fa fa-clock"></i> Joined From</h6>
+                  <h6 class="card-title"><%= joinedFrom %> ago</h6>
+                </div>
+                <hr>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% } %>
+  </div>
+</div>

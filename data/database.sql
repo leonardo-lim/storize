@@ -6,7 +6,12 @@ CREATE TABLE users (
   email VARCHAR(50) NOT NULL,
   password VARCHAR(65) NOT NULL,
   name VARCHAR(50) NOT NULL,
-  phone VARCHAR(15) NOT NULL
+  phone VARCHAR(15) NOT NULL,
+  address VARCHAR(100),
+  city VARCHAR(25),
+  country VARCHAR(25),
+  zipCode INT,
+  joinDate TIMESTAMP NOT NULL
 );
 
 CREATE TABLE products (
@@ -19,7 +24,7 @@ CREATE TABLE products (
 CREATE TABLE receipts (
   id SERIAL NOT NULL PRIMARY KEY,
   userId INT NOT NULL REFERENCES users (id),
-  purchaseDate DATE NOT NULL
+  purchaseDate TIMESTAMP NOT NULL
 );
 
 CREATE TABLE orders (
