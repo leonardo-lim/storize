@@ -54,7 +54,7 @@ app.use('/users', usersRoute);
 // Not Found Page
 app.use('/', (req, res) => {
   res.status(404);
-  res.render('not-found', {
+  res.render('errors/not-found', {
     layout: 'layouts/main',
     title: 'Page Not Found'
   });

@@ -10,6 +10,10 @@
             <div class="row">
               <div class="col">
                 <h1 class="mb-3">My Profile</h1>
+
+                <% if (message.length) { %>
+                  <div class="alert alert-success w-75 py-2 mb-3 m-auto float-lg-start" role="alert"><%= message %></div>
+                <% } %>
               </div>
             </div>
             <div class="row">
@@ -43,22 +47,22 @@
               <div class="col-lg-6 col-12">
                 <div>
                   <h6 class="mb-1 text-gold"><i class="fa fa-map-marker-alt"></i> Address</h6>
-                  <h6 class="card-title>"><%= !user.address && '-' %></h6>
+                  <h6 class="card-title>"><%= user.address ? user.address : '-' %></h6>
                 </div>
                 <hr>
                 <div>
                   <h6 class="mb-1 text-gold"><i class="fa fa-city"></i> City</h6>
-                  <h6 class="card-title>"><%= !user.city && '-' %></h6>
+                  <h6 class="card-title>"><%= user.city ? user.city : '-' %></h6>
                 </div>
                 <hr>
                 <div>
                   <h6 class="mb-1 text-gold"><i class="fa fa-globe"></i> Country</h6>
-                  <h6 class="card-title>"><%= !user.country && '-' %></h6>
+                  <h6 class="card-title>"><%= user.country ? user.country : '-' %></h6>
                 </div>
                 <hr>
                 <div>
                   <h6 class="mb-1 text-gold"><i class="fa fa-mailbox"></i> Zip Code</h6>
-                  <h6 class="card-title>"><%= !user.zipcode && '-' %></h6>
+                  <h6 class="card-title>"><%= user.zipcode ? user.zipcode : '-' %></h6>
                 </div>
                 <hr>
                 <% if (isMyUser) { %>
