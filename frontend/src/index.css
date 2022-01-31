@@ -1,0 +1,57 @@
+.bg-black {
+    background-color: #000 !important;
+}
+
+.text-black {
+    color: #000 !important;
+}
+
+.text-gold {
+    color: #bfbe58 !important;
+}
+
+.text-beige {
+    color: #dad992 !important;
+}
+
+.btn-gold {
+    background-color: #bfbe58 !important;
+    color: #fff !important;
+    box-shadow: rgba(149, 157, 165, .2) 0 8px 24px;
+}
+
+.btn-gold:hover {
+    background-color: #a3a250 !important;
+}
+
+.btn-beige {
+    background-color: #dad992 !important;
+    color: #fff !important;
+    box-shadow: rgba(149, 157, 165, .2) 0 8px 24px;
+}
+
+.btn-beige:hover {
+    background-color: #c7c47b !important;
+}
+
+.btn:focus {
+    box-shadow: none !important;
+}
+
+.form-control:focus {
+    border-bottom: 1px solid #bfbe58 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+.dropdown .dropdown-menu {
+    background-color: #bfbe58;
+}
+
+.dropdown .dropdown-menu a {
+    color: #fff;
+}
+
+.dropdown .dropdown-menu a:hover {
+    background-color: #dad992;
+}

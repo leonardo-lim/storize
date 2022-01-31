@@ -1,0 +1,26 @@
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+::-moz-selection {
+    background-color: #bfbe58;
+    color: #fff;
+}
+
+::selection {
+    background-color: #bfbe58;
+    color: #fff;
+}
+
+::-webkit-scrollbar {
+    background-color: #fff;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #bfbe58;
+    border-radius: 10px;
+}

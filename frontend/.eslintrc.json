@@ -1,0 +1,74 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "jest": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+        "react/react-in-jsx-scope": "off",
+        "arrow-parens": "error",
+        "brace-style": "error",
+        "block-spacing": "error",
+        "curly": "error",
+        "eqeqeq": "error",
+        "no-var": "error",
+        "no-empty": "warn",
+        "no-unused-vars": "warn",
+        "no-array-constructor": "error",
+        "no-constructor-return": "error",
+        "no-unreachable-loop": "error",
+        "no-self-compare": "warn",
+        "no-template-curly-in-string": "warn",
+        "no-new-object": "error",
+        "no-new-wrappers": "error",
+        "no-labels": "error",
+        "no-label-var": "error",
+        // securities
+        "no-eval": "error",
+        "no-implied-eval": "error",
+        "no-new-func": "error",
+        "prefer-const": "warn",
+        "prefer-exponentiation-operator": "error",
+        "keyword-spacing": "error",
+        "semi": "error",
+        "yoda": "warn",
+        "indent": [
+            "error"
+        ],
+        "comma-style": [
+            "error",
+            "last"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "max-len": [
+            "error",
+            {
+                "ignoreUrls": true,
+                "ignoreStrings": true,
+                "ignoreTemplateLiterals": true
+            }
+        ],
+        "react/no-unescaped-entities": "off"
+    }
+}
