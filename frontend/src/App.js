@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import './App.css';
 import Background from './components/Background';
 import Navbar from './components/Navbar';
@@ -12,7 +11,6 @@ import Footer from './components/Footer';
 import NotFound from './components/NotFound';
 
 const App = () => {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
     const location = useLocation();
 
     return (
@@ -22,9 +20,9 @@ const App = () => {
             <Routes>
                 <Route exact path="/" element={<Index />} />
                 <Route exact path="/about" element={<About />} />
-                <Route exact path="/login" element={!isAuthenticated ? <Login /> : <Navigate to="/index" />} />
-                <Route exact path="/register" element={!isAuthenticated ? <Register /> : <Navigate to="/index" />} />
-                <Route exact path="/products" element={isAuthenticated ? <Product /> : <Navigate to="/login" />} />
+                <Route exact path="/login" element={<Login />} />
+                <Route exact path="/register" element={<Register />} />
+                <Route exact path="/products" element={<Product />} />
                 <Route exact path="*" element={<NotFound />} />
             </Routes>
             <Footer />

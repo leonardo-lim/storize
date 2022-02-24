@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 const Nav = styled.nav`
+    z-index: 1;
+
     .navbar-collapse {
         background-color: #fff;
         box-shadow: rgba(149, 157, 165, .2) 0 8px 24px;
