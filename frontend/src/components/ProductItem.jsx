@@ -28,7 +28,7 @@ const ProductItem = ({ item }) => {
                 <h6 className="card-title">{item.title}</h6>
                 <h5 className="card-text mb-3">${item.price}</h5>
                 <button className="btn btn-gold w-50"><i className="fa fa-shopping-cart"></i> Add to Cart</button>
-                <a href="/products/detail" className="btn btn-beige w-50"><i className="fa fa-info-circle"></i> See Details</a>
+                <a href={`/products/details/${item.id}`} className="btn btn-beige w-50"><i className="fa fa-info-circle"></i> See Details</a>
             </div>
         </Card>
     );

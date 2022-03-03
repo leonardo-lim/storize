@@ -1,3 +1,4 @@
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Nav = styled.nav`
@@ -17,6 +18,8 @@ const Nav = styled.nav`
 `;
 
 const Navbar = () => {
+    const { pathname } = useLocation();
+
     return (
         <Nav className="navbar navbar-expand-lg navbar-light bg-transparent position-absolute w-100 mt-lg-5 mt-2 text-black">
             <div className="container">
@@ -27,10 +30,10 @@ const Navbar = () => {
                 <div className="collapse navbar-collapse mt-lg-0 mt-2 pb-lg-0 pb-3 rounded" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <a className="nav-link active fs-5 mx-3" href="/products">Product</a>
+                            <a className={pathname === '/products' ? 'nav-link active fs-5 mx-3' : 'nav-link fs-5 mx-3'} href="/products">Product</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link active fs-5 mx-3" href="/about">About</a>
+                            <a className={pathname === '/about' ? 'nav-link active fs-5 mx-3' : 'nav-link fs-5 mx-3'} href="/about">About</a>
                         </li>
                     </ul>
                     <form className="d-flex ms-auto">
