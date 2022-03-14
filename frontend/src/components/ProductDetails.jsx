@@ -17,7 +17,7 @@ const Quantity = styled.input`
     outline: none;
 `;
 
-const ProductDetails = () => {
+const ProductDetails = ({ setAmount }) => {
     const [showFetchLoading, setShowFetchLoading] = useState(false);
     const [item, setItem] = useState([]);
     const [rating, setRating] = useState(0);
@@ -26,6 +26,8 @@ const ProductDetails = () => {
     const [price, setPrice] = useState(0);
     const [quantity, setQuantity] = useState(1);
     const [quantityError, setQuantityError] = useState(false);
+    const [successMessage, setSuccessMessage] = useState(false);
+    let itemData;
 
     const { pathname } = useLocation();
     const id = pathname.substring(pathname.lastIndexOf('/') + 1);
@@ -50,6 +52,7 @@ const ProductDetails = () => {
             setQuantity(quantity - 1);
             setPrice((unitPrice * (quantity - 1)).toFixed(2));
             setQuantityError(false);
+            setSuccessMessage(false);
         }
     };
 
@@ -67,6 +70,8 @@ const ProductDetails = () => {
         } else if (quantity > stock) {
             setQuantityError(true);
         }
+
+        setSuccessMessage(false);
     };
 
     const increaseQuantity = () => {
@@ -74,6 +79,60 @@ const ProductDetails = () => {
             setQuantity(quantity + 1);
             setPrice((unitPrice * (quantity + 1)).toFixed(2));
             setQuantityError(false);
+            setSuccessMessage(false);
+        }
+    };
+
+    const addToCart = () => {
+        if (quantity > 0) {
+            const rawData = localStorage.getItem('items');
+
+            if (!rawData) {
+                itemData = [];
+            } else {
+                itemData = JSON.parse(rawData);
+            }
+
+            let currentQuantity, exist = false;
+
+            for (const i of itemData) {
+                if (i.id === item.id) {
+                    i.quantity += quantity;
+                    i.price = (i.unitPrice * i.quantity).toFixed(2);
+                    currentQuantity = i.quantity;
+                    exist = true;
+                    break;
+                }
+            }
+
+            if (exist) {
+                if (currentQuantity > stock) {
+                    setQuantityError(true);
+                    setSuccessMessage(false);
+                } else {
+                    localStorage.setItem('items', JSON.stringify(itemData));
+                    setQuantity(1);
+                    setPrice(unitPrice);
+                    setQuantityError(false);
+                    setSuccessMessage(true);
+                }
+            } else {
+                item.quantity = quantity;
+                item.unitPrice = parseFloat((item.price)).toFixed(2);
+
+                const price = item.unitPrice * item.quantity;
+                item.price = parseFloat(price).toFixed(2);
+                item.quantityError = false;
+
+                itemData.push(item);
+                localStorage.setItem('items', JSON.stringify(itemData));
+
+                setQuantity(1);
+                setPrice(unitPrice);
+                setAmount(itemData?.length);
+                setQuantityError(false);
+                setSuccessMessage(true);
+            }
         }
     };
 
@@ -112,6 +171,7 @@ const ProductDetails = () => {
                     <h1 className="mb-3"><i className="fa fa-shopping-cart"></i></h1>
 
                     {quantityError && <p className="alert alert-warning p-2">Max purchased item is {stock}</p>}
+                    {successMessage && <p className="alert alert-success p-2">Added to cart</p>}
 
                     <div className="row mb-2">
                         <div className="col-5 text-start mt-1">
@@ -131,7 +191,7 @@ const ProductDetails = () => {
                             <h5>${price}</h5>
                         </div>
                     </div>
-                    <button className="btn btn-gold w-100">Add to Cart</button>
+                    <button className="btn btn-gold w-100" onClick={addToCart}>Add to Cart</button>
                 </div>
             </div>
         </div>
@@ -139,7 +199,7 @@ const ProductDetails = () => {
 };
 
 ProductDetails.propTypes = {
-    item: PropTypes.object
+    setAmount: PropTypes.func
 };
 
 export default ProductDetails;
