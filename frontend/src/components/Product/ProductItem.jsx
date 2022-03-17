@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
@@ -27,7 +28,7 @@ const ProductItem = ({ item }) => {
             <div className="card-body text-center">
                 <h6 className="card-title">{item.title}</h6>
                 <h5 className="card-text mb-3">${item.price}</h5>
-                <a href={`/products/details/${item.id}`} className="btn btn-gold w-100"><i className="fa fa-eye"></i> See Details</a>
+                <Link to={`/products/details/${item.id}`} className="btn btn-gold w-100"><i className="fa fa-eye"></i> See Details</Link>
             </div>
         </Card>
     );

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Tagline = styled.h1`
@@ -31,7 +32,7 @@ const Index = () => {
                     <Tagline>Your reliable and</Tagline>
                     <Tagline>most updated</Tagline>
                     <Tagline>shopping site</Tagline>
-                    <a href="/products" className="btn btn-gold mt-3">Explore <i className="fa fa-arrow-right"></i></a>
+                    <Link to="/products" className="btn btn-gold mt-3">Explore <i className="fa fa-arrow-right"></i></Link>
                 </div>
                 <div className="col-lg-5 col-12">
                     <Img src="/img/scrolling.png" className="d-block ms-auto" alt="Scrolling" />

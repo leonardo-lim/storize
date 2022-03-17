@@ -1,4 +1,5 @@
 import { useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { CartItemContext } from './Cart';
@@ -110,9 +111,9 @@ const CartItem = ({ item, i }) => {
             <div className="row align-items-center">
                 <div className="col-md-2 col-6">
                     <ProductImage>
-                        <a href={`/products/details/${item.id}`}>
+                        <Link to={`/products/details/${item.id}`}>
                             <img src={item.image} className="w-100" alt={item.title} />
-                        </a>
+                        </Link>
                     </ProductImage>
                 </div>
                 <div className="col-6">

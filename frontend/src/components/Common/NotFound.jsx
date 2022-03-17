@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const NotFound = () => {
     return (
         <div className="container">
@@ -8,7 +10,7 @@ const NotFound = () => {
                 <div className="col-lg-6 col-12 text-lg-start text-center">
                     <h1 className="status">4 <i className="fa fa-frown"></i> 4</h1>
                     <h5>Looks like the page you're looking for doesn't exist</h5>
-                    <a href="/" className="btn btn-gold mt-3"><i className="fa fa-arrow-left"></i> Go Back</a>
+                    <Link to="/" className="btn btn-gold mt-3"><i className="fa fa-arrow-left"></i> Go Back</Link>
                 </div>
             </div>
         </div>

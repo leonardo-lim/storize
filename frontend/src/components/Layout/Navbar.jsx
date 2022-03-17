@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { NavbarContext } from '../../App';
 
@@ -46,24 +46,24 @@ const Navbar = () => {
     return (
         <Nav className="navbar navbar-expand-lg navbar-light bg-transparent position-absolute w-100 mt-lg-5 mt-2 text-black">
             <div className="container">
-                <a className="navbar-brand fs-1 text-gold" href="/">Storize</a>
+                <Link to="/" className="navbar-brand fs-1 text-gold">Storize</Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse mt-lg-0 mt-2 pb-lg-0 pb-3 rounded" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <a className={pathname.includes('/products') ? 'nav-link active fs-5 mx-3' : 'nav-link fs-5 mx-3'} href="/products">Product</a>
+                            <Link to="/products" className={`nav-link ${pathname.includes('/products') && 'active'} fs-5 mx-3`}>Product</Link>
                         </li>
                         <li className="nav-item">
-                            <a className={pathname === '/about' ? 'nav-link active fs-5 mx-3' : 'nav-link fs-5 mx-3'} href="/about">About</a>
+                            <Link to="/about" className={`nav-link ${pathname === '/about' && 'active'} fs-5 mx-3`}>About</Link>
                         </li>
                     </ul>
                     <form className="d-flex ms-auto position-relative">
-                        <a href="/cart" className="btn btn-beige ms-3" title="Cart"><i className="fa fa-shopping-cart"></i>
+                        <Link to="/cart" className="btn btn-beige ms-3" title="Cart"><i className="fa fa-shopping-cart"></i>
                             {amount > 0 && <Amount className="bg-danger rounded">{amount}</Amount>}
-                        </a>
-                        <a href="/login" className="btn btn-gold ms-3"><i className="fa fa-sign-in"></i> Login</a>
+                        </Link>
+                        <Link to="/login" className="btn btn-gold ms-3"><i className="fa fa-sign-in"></i> Login</Link>
                     </form>
                 </div>
             </div>

@@ -1,8 +1,9 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Joi from 'joi';
 
-const RegisterLink = styled.a`
+const RegisterLink = styled(Link)`
     text-decoration: none;
 
     &:hover {
@@ -65,8 +66,8 @@ const LoginForm = () => {
                 {errors.password && <div className="alert alert-warning w-75 py-2 mb-2 m-auto float-lg-start text-start" role="alert">{errors.password}</div>}
             </div>
             <button type="submit" className="btn btn-gold w-75 mb-2" onClick={validateForm}><i className="fa fa-sign-in"></i> Login</button>
-            <a href="/" className="btn btn-beige w-75 mb-3"><i className="fa fa-arrow-left"></i> Back</a>
-            <p>Don't have an account? <RegisterLink href="/register" className="register-link text-gold">Register</RegisterLink></p>
+            <Link to="/" className="btn btn-beige w-75 mb-3"><i className="fa fa-arrow-left"></i> Back</Link>
+            <p>Don't have an account? <RegisterLink to="/register" className="register-link text-gold">Register</RegisterLink></p>
         </form>
     );
 };

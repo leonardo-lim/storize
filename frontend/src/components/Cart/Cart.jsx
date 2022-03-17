@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import CartItem from './CartItem';
 
@@ -45,7 +46,7 @@ const Cart = ({ setAmount }) => {
                             <div className="col-lg-6 col-12 my-5 text-lg-start text-center">
                                 <h1 className="status"><i className="fa fa-shopping-cart"></i> <i className="fa fa-frown"></i></h1>
                                 <h5>Looks like your cart is empty</h5>
-                                <a href="/products" className="btn btn-gold mt-3"><i className="fa fa-arrow-right"></i> Start Shopping</a>
+                                <Link to="/products" className="btn btn-gold mt-3"><i className="fa fa-arrow-right"></i> Start Shopping</Link>
                             </div>
                         </>
                     ) : (
@@ -89,7 +90,7 @@ const Cart = ({ setAmount }) => {
                                         <h6>Subtotal Price</h6>
                                         <hr />
                                         <h1 className="mb-3">${subtotalPrice}</h1>
-                                        <a href="/checkout" className="btn btn-gold w-100">Checkout</a>
+                                        <Link to="/checkout" className="btn btn-gold w-100">Checkout</Link>
                                     </div>
                                 </div>
                             </div>

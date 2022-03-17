@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Joi from 'joi';
 
 const RegisterForm = () => {
@@ -134,7 +135,7 @@ const RegisterForm = () => {
                 {errors.confirmPassword && <div className="alert alert-warning w-75 py-2 mb-2 m-auto float-lg-start text-start" role="alert">{errors.confirmPassword}</div>}
             </div>
             <button type="submit" className="btn btn-gold w-75 mb-2" onClick={validateForm}><i className="fa fa-user-plus"></i> Register</button>
-            <a href="/login" className="btn btn-beige w-75"><i className="fa fa-arrow-left"></i> Back</a>
+            <Link to="/login" className="btn btn-beige w-75"><i className="fa fa-arrow-left"></i> Back</Link>
         </form>
     );
 };

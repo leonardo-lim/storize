@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const OrderSummary = ({ feeIndex }) => {
@@ -74,7 +75,7 @@ const OrderSummary = ({ feeIndex }) => {
                     <h6 className="fw-bold">${totalPrice}</h6>
                 </div>
             </div>
-            <a href="/completed" className="btn btn-gold w-100" onClick={completeOrder}>Complete Order</a>
+            <Link to="/completed" className="btn btn-gold w-100" onClick={completeOrder}>Complete Order</Link>
         </>
     );
 };
