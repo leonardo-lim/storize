@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import { NavbarContext } from '../App';
+import { NavbarContext } from '../../App';
 
 const Nav = styled.nav`
     z-index: 1;

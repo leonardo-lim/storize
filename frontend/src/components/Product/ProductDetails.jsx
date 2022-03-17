@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import FetchLoading from './FetchLoading';
+import FetchLoading from '../Widget/FetchLoading';
 
 const ProductImage = styled.img`
     @media (min-width: 992px) {

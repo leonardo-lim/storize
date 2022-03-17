@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import FetchLoading from './FetchLoading';
+import FetchLoading from '../Widget/FetchLoading';
 import ProductItem from './ProductItem';
 
 const Product = () => {

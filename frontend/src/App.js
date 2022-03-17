@@ -1,19 +1,19 @@
 import { createContext, useState } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import './App.css';
-import Background from './components/Background';
-import Navbar from './components/Navbar';
-import Index from './components/Index';
-import About from './components/About';
-import Cart from './components/Cart';
-import Checkout from './components/Checkout';
-import CompletedOrder from './components/CompletedOrder';
-import Login from './components/Login';
-import Register from './components/Register';
-import Product from './components/Product';
-import ProductDetails from './components/ProductDetails';
-import Footer from './components/Footer';
-import NotFound from './components/NotFound';
+import Background from './components/Layout/Background';
+import Navbar from './components/Layout/Navbar';
+import Index from './components/Common/Index';
+import About from './components/Common/About';
+import Cart from './components/Cart/Cart';
+import Checkout from './components/Checkout/Checkout';
+import CompletedOrder from './components/Checkout/CompletedOrder';
+import Login from './components/Login/Login';
+import Register from './components/Register/Register';
+import Product from './components/Product/Product';
+import ProductDetails from './components/Product/ProductDetails';
+import Footer from './components/Layout/Footer';
+import NotFound from './components/Common/NotFound';
 
 const NavbarContext = createContext();
 
