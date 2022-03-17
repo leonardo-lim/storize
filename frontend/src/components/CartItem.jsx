@@ -116,7 +116,7 @@ const CartItem = ({ item, i }) => {
                     </ProductImage>
                 </div>
                 <div className="col-6">
-                    <p className="px-2">{item.title}</p>
+                    <h6 className="px-2">{item.title}</h6>
                 </div>
                 <div className="col-md-2 col-6 mt-md-0 mt-3 bg-beige text-center rounded">
                     <button className="btn text-white p-0" onClick={() => decreaseQuantity(i)}><i className="fa fa-minus"></i></button>

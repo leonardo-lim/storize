@@ -9,11 +9,11 @@ const Cart = ({ setAmount }) => {
     const [subtotalPrice, setSubtotalPrice] = useState();
 
     const updateSubtotalPrice = () => {
-        const subtotalPrice = itemData.reduce((total, current) => {
+        const newSubtotalPrice = itemData.reduce((total, current) => {
             return total + parseFloat(current.price);
         }, 0);
 
-        setSubtotalPrice(subtotalPrice.toFixed(2));
+        setSubtotalPrice(newSubtotalPrice.toFixed(2));
     };
 
     useEffect(() => {
@@ -24,13 +24,12 @@ const Cart = ({ setAmount }) => {
         } else {
             const data = JSON.parse(rawData);
 
-            const subtotalPrice = data.reduce((total, current) => {
+            const newSubtotalPrice = data.reduce((total, current) => {
                 return total + parseFloat(current.price);
             }, 0);
 
             setItemData(data);
-            localStorage.setItem('items', JSON.stringify(data));
-            setSubtotalPrice(subtotalPrice.toFixed(2));
+            setSubtotalPrice(newSubtotalPrice.toFixed(2));
         }
     }, []);
 
@@ -90,7 +89,7 @@ const Cart = ({ setAmount }) => {
                                         <h6>Subtotal Price</h6>
                                         <hr />
                                         <h1 className="mb-3">${subtotalPrice}</h1>
-                                        <button className="btn btn-gold w-100">Checkout</button>
+                                        <a href="/checkout" className="btn btn-gold w-100">Checkout</a>
                                     </div>
                                 </div>
                             </div>

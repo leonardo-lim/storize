@@ -57,17 +57,17 @@ const ProductDetails = ({ setAmount }) => {
     };
 
     const updateQuantity = (e) => {
-        const quantity = parseInt(e.target.value);
+        const newQuantity = parseInt(e.target.value);
 
-        if (isNaN(quantity)) {
+        if (isNaN(newQuantity)) {
             setQuantity(0);
             setPrice(0);
             setQuantityError(false);
-        } else if (quantity >= 1 && quantity <= stock) {
-            setQuantity(quantity);
-            setPrice((unitPrice * quantity).toFixed(2));
+        } else if (newQuantity >= 1 && newQuantity <= stock) {
+            setQuantity(newQuantity);
+            setPrice((unitPrice * newQuantity).toFixed(2));
             setQuantityError(false);
-        } else if (quantity > stock) {
+        } else if (newQuantity > stock) {
             setQuantityError(true);
         }
 
@@ -120,8 +120,8 @@ const ProductDetails = ({ setAmount }) => {
                 item.quantity = quantity;
                 item.unitPrice = parseFloat((item.price)).toFixed(2);
 
-                const price = item.unitPrice * item.quantity;
-                item.price = parseFloat(price).toFixed(2);
+                const newPrice = item.unitPrice * item.quantity;
+                item.price = parseFloat(newPrice).toFixed(2);
                 item.quantityError = false;
 
                 itemData.push(item);

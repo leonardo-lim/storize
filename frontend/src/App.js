@@ -6,6 +6,8 @@ import Navbar from './components/Navbar';
 import Index from './components/Index';
 import About from './components/About';
 import Cart from './components/Cart';
+import Checkout from './components/Checkout';
+import CompletedOrder from './components/CompletedOrder';
 import Login from './components/Login';
 import Register from './components/Register';
 import Product from './components/Product';
@@ -31,6 +33,8 @@ const App = () => {
                 <Route exact path="/" element={<Index />} />
                 <Route exact path="/about" element={<About />} />
                 <Route exact path="/cart" element={<Cart setAmount={setAmount} />} />
+                <Route exact path="/checkout" element={<Checkout />} />
+                <Route exact path="/completed" element={<CompletedOrder />} />
                 <Route exact path="/login" element={<Login />} />
                 <Route exact path="/register" element={<Register />} />
                 <Route exact path="/products" element={<Product />} />
