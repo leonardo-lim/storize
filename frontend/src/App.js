@@ -10,6 +10,8 @@ import Checkout from './components/Checkout/Checkout';
 import CompletedOrder from './components/Checkout/CompletedOrder';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
+import User from './components/User/User';
+import UserEdit from './components/User/UserEdit';
 import Product from './components/Product/Product';
 import ProductDetails from './components/Product/ProductDetails';
 import Footer from './components/Layout/Footer';
@@ -52,6 +54,8 @@ const App = () => {
                         <Route exact path="/completed" element={<CompletedOrder />} />
                         <Route exact path="/login" element={<Login />} />
                         <Route exact path="/register" element={<Register />} />
+                        <Route exact path="/users" element={<User />} />
+                        <Route exact path="/users/edit" element={<UserEdit />} />
                         <Route exact path="/products" element={<Product />} />
                         <Route exact path="/products/details/*" element={<ProductDetails setAmount={setAmount} />} />
                         <Route exact path="*" element={<NotFound />} />
