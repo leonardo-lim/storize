@@ -1,6 +1,9 @@
-import { useState } from 'react';
+import { createContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Joi from 'joi';
+import UserEditFormInput from './UserEditFormInput';
+
+const FormInputContext = createContext();
 
 const UserEditForm = () => {
     const [data, setData] = useState({
@@ -100,50 +103,20 @@ const UserEditForm = () => {
     return (
         <form action="/users/update" method="POST" className="text-lg-start text-center">
             <div className="row">
-                <div className="col-lg-6 col-12">
-                    <div className="form-group mb-3">
-                        <span className="me-2 mt-1 position-absolute"><i className="fa fa-tag text-gold"></i></span>
-                        <input type="text" className="form-control bg-transparent ps-4 border-0 border-bottom rounded-0 d-inline" id="name" name="name" placeholder="Enter your name" value={data.name} onChange={(e) => setData({ ...data, name: e.target.value })} />
-                        {errors.name && <div className="alert alert-warning w-100 py-2 mb-2 m-auto float-lg-start text-start" role="alert">{errors.name}</div>}
+                <FormInputContext.Provider value={[data, setData, errors]}>
+                    <div className="col-lg-6 col-12">
+                        <UserEditFormInput propKey="name" iconName="tag" readOnly={false} />
+                        <UserEditFormInput propKey="phone" iconName="phone-alt" readOnly={false} />
+                        <UserEditFormInput propKey="email" iconName="envelope" readOnly={true} />
+                        <UserEditFormInput propKey="username" iconName="user" readOnly={false} />
                     </div>
-                    <div className="form-group mb-3">
-                        <span className="me-2 mt-1 position-absolute"><i className="fa fa-phone-alt text-gold"></i></span>
-                        <input type="text" className="form-control bg-transparent ps-4 border-0 border-bottom rounded-0 d-inline" id="phone" name="phone" placeholder="Enter your phone" value={data.phone} onChange={(e) => setData({ ...data, phone: e.target.value })} />
-                        {errors.phone && <div className="alert alert-warning w-100 py-2 mb-2 m-auto float-lg-start text-start" role="alert">{errors.phone}</div>}
+                    <div className="col-lg-6 col-12">
+                        <UserEditFormInput propKey="address" iconName="map-marker-alt" readOnly={false} />
+                        <UserEditFormInput propKey="city" iconName="city" readOnly={false} />
+                        <UserEditFormInput propKey="country" iconName="globe" readOnly={false} />
+                        <UserEditFormInput propKey="zipCode" iconName="mailbox" readOnly={false} />
                     </div>
-                    <div className="form-group mb-3">
-                        <span className="me-2 mt-1 position-absolute"><i className="fa fa-envelope text-gold"></i></span>
-                        <input type="text" className="form-control bg-transparent ps-4 border-0 border-bottom rounded-0 d-inline" id="email" name="email" placeholder="Enter your email" value={data.email} readOnly />
-                        {errors.email && <div className="alert alert-warning w-100 py-2 mb-2 m-auto float-lg-start text-start" role="alert">{errors.email}</div>}
-                    </div>
-                    <div className="form-group mb-3">
-                        <span className="me-2 mt-1 position-absolute"><i className="fa fa-user text-gold"></i></span>
-                        <input type="text" className="form-control bg-transparent ps-4 border-0 border-bottom rounded-0 d-inline" id="username" name="username" placeholder="Enter your username" value={data.username} onChange={(e) => setData({ ...data, username: e.target.value })} />
-                        {errors.username && <div className="alert alert-warning w-100 py-2 mb-2 m-auto float-lg-start text-start" role="alert">{errors.username}</div>}
-                    </div>
-                </div>
-                <div className="col-lg-6 col-12">
-                    <div className="form-group mb-3">
-                        <span className="me-2 mt-1 position-absolute"><i className="fa fa-map-marker-alt text-gold"></i></span>
-                        <input type="text" className="form-control bg-transparent ps-4 border-0 border-bottom rounded-0 d-inline" id="address" name="address" placeholder="Enter your address" value={data.address} onChange={(e) => setData({ ...data, address: e.target.value })} />
-                        {errors.address && <div className="alert alert-warning w-100 py-2 mb-2 m-auto float-lg-start text-start" role="alert">{errors.address}</div>}
-                    </div>
-                    <div className="form-group mb-3">
-                        <span className="me-2 mt-1 position-absolute"><i className="fa fa-city text-gold"></i></span>
-                        <input type="text" className="form-control bg-transparent ps-4 border-0 border-bottom rounded-0 d-inline" id="city" name="city" placeholder="Enter your city" value={data.city} onChange={(e) => setData({ ...data, city: e.target.value })} />
-                        {errors.city && <div className="alert alert-warning w-100 py-2 mb-2 m-auto float-lg-start text-start" role="alert">{errors.city}</div>}
-                    </div>
-                    <div className="form-group mb-3">
-                        <span className="me-2 mt-1 position-absolute"><i className="fa fa-globe text-gold"></i></span>
-                        <input type="text" className="form-control bg-transparent ps-4 border-0 border-bottom rounded-0 d-inline" id="country" name="country" placeholder="Enter your country" value={data.country} onChange={(e) => setData({ ...data, country: e.target.value })} />
-                        {errors.country && <div className="alert alert-warning w-100 py-2 mb-2 m-auto float-lg-start text-start" role="alert">{errors.country}</div>}
-                    </div>
-                    <div className="form-group mb-3">
-                        <span className="me-2 mt-1 position-absolute"><i className="fa fa-mailbox text-gold"></i></span>
-                        <input type="text" className="form-control bg-transparent ps-4 border-0 border-bottom rounded-0 d-inline" id="zip-code" name="zipCode" placeholder="Enter your zip code" value={data.zipCode} onChange={(e) => setData({ ...data, zipCode: e.target.value })} />
-                        {errors.zipCode && <div className="alert alert-warning w-100 py-2 mb-2 m-auto float-lg-start text-start" role="alert">{errors.zipCode}</div>}
-                    </div>
-                </div>
+                </FormInputContext.Provider>
             </div>
             <button type="submit" className="btn btn-gold w-100 mb-2" onClick={validateForm}><i className="fa fa-arrow-up"></i> Update</button>
             <Link to="/users" className="btn btn-beige w-100"><i className="fa fa-arrow-left"></i> Back</Link>
@@ -151,4 +124,5 @@ const UserEditForm = () => {
     );
 };
 
+export { FormInputContext };
 export default UserEditForm;
