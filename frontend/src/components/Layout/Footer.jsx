@@ -48,7 +48,7 @@ const Footer = () => {
                 <a href="https://www.github.com/leonardo-lim" target="_blank" rel="noopener noreferrer"><i className="fab fa-github"></i></a>
             </div>
             <div className="icon">
-                <a href="https://www.instagram.com/leonardolim78" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram"></i></a>
+                <a href="https://www.instagram.com/leonardo.lim_" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram"></i></a>
             </div>
         </Foo>
     );
